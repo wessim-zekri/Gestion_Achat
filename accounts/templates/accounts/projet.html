@@ -1,0 +1,97 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+	<br>
+
+<div class="row">
+	
+	<div class="col-md-4">
+		<div class="card card-body">
+			<h5>Projet N°{{projet.id}}</h5>
+			<hr>
+            <p>Reference/Designation: {{projet.designation}}</p>
+            <p>Chef Projet/Responsable : {{projet.responsable}}</p>
+            <p>Date Debut  : {{projet.date_creation}}</p>
+            <p>Durée(semaines) : {{projet.durée_en_semaines}}</p>
+            <p>Statut : {{projet.statut}}</p>
+		</div>
+    </div>
+
+    <div class="col-md-8">
+    
+    <!--<div class="row">
+    <div class="col-md-6">
+		<div class="card card-body">
+			<h5>Gérer le projet</h5>
+			<hr>
+			<a class="btn btn-success  btn-md btn-block" href="">Modifier Projet</a><br>
+			<a class="btn btn-danger  btn-md btn-block" href="">Supprimer Projet</a>
+
+        </div>
+	</div>
+
+	<div class="col-md-6">
+		<div class="card card-body">
+			<h5>Nombre des demandes</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{total_demandes}}</h1>
+		</div>
+    </div>
+    </div>
+-->
+    
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <h5>Les demandes pour ce projet</h5>
+                <hr>
+                <div class="card card-body">
+                    <table class="table table-sm">
+                        <tr>
+                            <th>Designation</th>
+                            <th>Quantité</th>
+                            <th>Fabricant</th>
+                            <th>Référence</th>
+                            <th>Fournisseur</th>
+                            <th>Référence</th>
+                            <th>Commentaire</th>
+                            <th>Statut</th>
+        
+                        </tr>
+        
+                        {% for demande in demandes %}
+                            <tr>
+                                <td>{{demande.piece}}</td>
+                                <td>{{demande.quantite_piece}}</td>
+                                <td>{{demande.fabricant}}</td>
+                                <td>{{demande.reference_fabricant}}</td>
+                                <td>{{demande.fournisseur}}</td>
+                                <td>{{demande.reference_fournisseur}}</td>
+                                <td>{{demande.commentaire}}</td>
+                                <td>{{demande.statut}}</td>
+                            </tr>
+                        {% endfor %}
+        
+                    </table>
+                </div>
+            </div>  
+        </div>
+    </div>
+    <br>
+</div>
+<br>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<form method="get">
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>
+	
+</div>
+<br>
+
+{% endblock %}

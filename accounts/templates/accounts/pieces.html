@@ -1,0 +1,59 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+            <h5>Les pieces disponibles</h5>
+            <hr>
+			<table class="table table-sm" data-toggle="table">
+				<tr>
+					<th>Designation</th>
+                    <th>Référence</th>
+                    <th>Fabricant</th>
+					<th>Catégorie</th>
+					<th>prix (dinars)</th>
+					<th>Date d'ajout</th>
+                    <th></th>
+                    <th></th>
+				</tr>
+
+                {% for piece in pieces %}
+                    <tr>
+                        <td>{{piece.designation}}</td>
+                        <td>{{piece.reference}}</td>
+                        <td>{{piece.fabricant}}</td>
+                        <td>{{piece.categorie}}</td>
+                        <td>{{piece.prix}}</td>
+                        <td>{{piece.date_creation}}</td>
+						<td><a href="{% url 'modifier_piece' piece.id %}"><button class="btn btn-sm btn-success">Modifier</button></a></td>
+						<td><a href="{% url 'supprimer_piece' piece.id %}"><button class="btn btn-sm btn-danger">Supprimer</button></a></td>
+	
+    
+                    </tr>
+                {% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+<br>
+
+<!--<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get">
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>
+	
+</div>
+-->
+{% endblock %}
+

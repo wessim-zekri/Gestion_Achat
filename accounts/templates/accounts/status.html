@@ -1,0 +1,59 @@
+  
+<br>
+<style>
+	body{
+    background-color: #eaf0fd;
+}
+
+#demandes-totales{
+    background-color: #4cb4c7;
+}
+
+#demandes-validées{
+    background-color: #7abecc;
+}
+
+#demandes-non-traitées{
+    background-color: #7CD1C0;
+}
+</style>
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="demandes-totales">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Demandes totales</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{total_demandes}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="demandes-validées">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Demandes validées</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{total_demval}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="demandes-non-traitées">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Demandes non validées</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{non_validees}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+</div>

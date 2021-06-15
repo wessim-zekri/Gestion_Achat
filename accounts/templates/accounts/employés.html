@@ -1,0 +1,62 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+            <h5>Liste des employés</h5>
+			<hr> 
+			<a class="btn btn-outline-dark  btn-sm btn-block" href="{% url 'creer_employé' %}">Ajouter un employé</a>
+			<br>
+			<table class="table table-sm" data-toggle="table">
+				<tr>
+					<th>Nom</th>
+					<th>Prénom</th>
+					<th>Telephone</th>
+					<th>Email</th>
+					<th>Adresse</th>
+					<th>Titre</th>
+                    <th>Session</th>
+                    <th></th>
+
+                </tr>
+                
+                {% for employé in employés %}
+                <tr>
+                    <td>{{employé.nom}}</td>
+                    <td>{{employé.prenom}}</td>
+                    <td>{{employé.telephone}}</td>
+                    <td>{{employé.email}}</td>
+                    <td>{{employé.adresse}}</td>
+                    <td>{{employé.titre}}</td>
+                    <td>{{employé.session_user}}</td>
+					<td><a href="{% url 'modifier_employé' employé.id %}"><button class="btn btn-sm btn-success">Modifier</button></a></td>
+                    <td><a href="{% url 'supprimer_employé' employé.id %}"><button class="btn btn-sm btn-danger">Supprimer</button></a></td>
+
+                </tr>
+            {% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+<br>
+
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get">
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>
+	
+</div>
+
+{% endblock %}
+

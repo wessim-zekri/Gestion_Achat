@@ -1,0 +1,110 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+	<br>
+
+<div class="row">
+	
+	<div class="col-md-3">
+		<div class="card card-body">
+			<h5>Fournisseur : {{fournisseur.nom}}</h5>
+			<hr>
+            <p>Référence : {{fournisseur.reference}}</p>
+            <p>Email : {{fournisseur.email}}</p>
+            <p>Telephone  : {{fournisseur.telephone}} </p>
+            <p>Adresse : {{fournisseur.adresse}}</p>
+            <p>Pièces : {{fournisseur.pieces}}</p>
+		</div>
+    </div>
+
+    <div class="col-md-9">
+    
+    <!--<div class="row">
+    <div class="col-md-6">
+		<div class="card card-body">
+			<h5>Gérer le projet</h5>
+			<hr>
+			<a class="btn btn-success  btn-md btn-block" href="">Modifier Projet</a><br>
+			<a class="btn btn-danger  btn-md btn-block" href="">Supprimer Projet</a>
+
+        </div>
+	</div>
+
+	<div class="col-md-6">
+		<div class="card card-body">
+			<h5>Nombre des demandes</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{total_demandes}}</h1>
+		</div>
+    </div>
+    </div>
+-->
+    
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <h5>Les demandes pour {{fournisseur.nom}}</h5>
+                <hr>
+                <div class="card card-body">
+                    <table class="table table-sm">
+                        <tr>
+
+                            <th>Num RFQ</th>
+                            <th>Project Ref</th>
+                            <th>Application Date</th>
+                            <th>Customer</th>
+                            <th>PO Customer</th>
+                            <th>Requester</th>
+                            <th>Speciality</th>
+                            <th>Desired Delivery Date</th>
+                            <th>Quotation Number</th>
+                            <th>Initial Cost Cotation</th>
+                            <th>Devise</th>
+                            <th>Initial Delivery Date</th>
+                        </tr>
+        
+                        {% for demande in demandes %}
+                            <tr>
+
+                                <td>{{demande.Num_RFQ}}</td>
+                                <td>{{demande.Project_Ref}}</td>
+                                <td>{{demande.Application_Date}}</td>
+                                <td>{{demande.Customer}}</td>
+                                <td>{{demande.PO_Customer}}</td>
+                                <td>{{demande.Requester}}</td>
+                                <td>{{demande.Speciality}}</td>
+                                <td>{{demande.Desired_Delivery_Date}}</td>
+                                <td>{{demande.Quotation_Number}}</td>
+                                <td>{{demande.Initial_Cost_Cotation}}</td>
+                                <td>{{demande.Devise}}</td>
+                                <td>{{demande.Initial_Delivery_Date}}</td>
+                            </tr>
+                        {% endfor %}
+        
+                    </table>
+                </div>
+                <br>
+                <div class="form-group col-md-12">
+                    <td><a href="{% url 'export' fournisseur.id %}"><button class="btn btn-success">CSV</button></a></td> 
+                </div>  
+            </div>  
+        </div>
+    </div>
+    <br>
+</div>
+<br>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<form method="get">
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>
+	
+</div>
+<br>
+
+{% endblock %}

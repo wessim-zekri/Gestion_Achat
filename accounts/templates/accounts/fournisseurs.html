@@ -1,0 +1,63 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+            <h5>Liste des fournisseurs</h5>
+			<hr> 
+			<a class="btn btn-outline-dark  btn-sm btn-block" href="{% url 'creer_fournisseur' %}">Ajouter un fournisseur</a>
+			<br>
+			<table class="table table-sm" data-toggle="table">
+				<tr>
+					<th>Nom</th>
+					<th>Référence</th>
+					<th>Telephone</th>
+					<th>Email</th>
+					<th>Adresse</th>
+					<th>Pièce(s)</th>
+                    <th>Date d'ajout</th>
+                    <th></th>
+
+                </tr>
+                
+                {% for fournisseur in fournisseurs %}
+                <tr>
+                    <td>{{fournisseur.nom}}</td>
+                    <td>{{fournisseur.reference}}</td>
+                    <td>{{fournisseur.telephone}}</td>
+                    <td>{{fournisseur.email}}</td>
+                    <td>{{fournisseur.adresse}}</td>
+                    <td>{{fournisseur.pieces}}</td>
+                    <td>{{fournisseur.date_creation}}</td>
+					<td><a href="{% url 'fournisseur' fournisseur.id %}"><button class="btn btn-sm btn-info">Consulter</button></a></td>
+					<td><a href="{% url 'modifier_fournisseur' fournisseur.id %}"><button class="btn btn-sm btn-success">Modifier</button></a></td>
+                    <td><a href="{% url 'supprimer_fournisseur' fournisseur.id %}"><button class="btn btn-sm btn-danger">Supprimer</button></a></td>
+
+                </tr>
+            {% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+<br>
+
+<!--<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get">
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>
+	
+</div>-->
+
+{% endblock %}
+

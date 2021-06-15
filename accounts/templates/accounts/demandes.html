@@ -1,0 +1,103 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+
+<br>
+
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get">
+                {{myFilter.form}}
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>
+	
+</div>
+
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+            <h5>Liste des demandes d'achat</h5>
+            <hr>
+            <table class="table table-sm" data-toggle="table" >
+				<tr>
+					<th>Num_RFQ</th>
+                    <th>Application_Date</th>
+					<th>Project Ref</th>
+                    <th>Requester</th>
+                    <th>Request Type</th>
+                    <th>Speciality</th>
+                    <th>Desired Delivery Date</th>
+                    <th>Customer</th>
+                    <th>PO Customer</th>
+                    <th>Supplier 1</th>
+                    <th>Delay 1 (jours)</th>
+                    <th>Quotation Number 1</th>
+                    <th>Initial Cost Cotation 1</th>
+                    <th>Devise 1</th>
+                    <th>Offer 1</th>
+                    <th>Supplier 2</th>
+                    <th>Delay 2 (jours)</th>
+                    <th>Quotation Number 2</th>
+                    <th>Initial Cost Cotation 2</th>
+                    <th>Devise 2</th>
+                    <th>Offer 2</th>
+                    <th>Supplier 3</th>
+                    <th>Delay 3 (jours)</th>
+                    <th>Quotation Number 3</th>
+                    <th>Initial Cost Cotation 3</th>
+                    <th>Devise 3</th>
+                    <th>Offer 3</th>
+                    
+
+                </tr>
+                
+                {% for demande in demandes %}
+                <tr>
+                    <td>D2100{{demande.id}}</td>
+                    <td>{{demande.Application_Date}}</td>
+                    <td>{{demande.Project_Ref}}</td>
+                    <td>{{demande.Requester}}</td>
+                    <td>{{demande.Request_Type}}</td>
+                    <td>{{demande.Speciality}}</td>
+                    <td>{{demande.Desired_Delivery_Date}}</td>
+                    <td>{{demande.Customer}}</td>
+                    <td>{{demande.PO_Customer}}</td>
+                    <td>{{demande.Supplier_1}}</td>                    
+                    <td>{{demande.Delay_1}}</td>
+                    <td>{{demande.Quotation_Number_1}}</td>
+                    <td>{{demande.Initial_Cost_Cotation_1}}</td>
+                    <td>{{demande.Devise_1}}</td>
+                    <td>{{demande.File_1}}</td>
+                    <td>{{demande.Supplier_2}}</td>                    
+                    <td>{{demande.Delay_2}}</td>
+                    <td>{{demande.Quotation_Number_2}}</td>
+                    <td>{{demande.Initial_Cost_Cotation_2}}</td>
+                    <td>{{demande.Devise_2}}</td>
+                    <td>{{demande.File_2}}</td>
+                    <td>{{demande.Supplier_3}}</td>                    
+                    <td>{{demande.Delay_3}}</td>
+                    <td>{{demande.Quotation_Number_3}}</td>
+                    <td>{{demande.Initial_Cost_Cotation_3}}</td>
+                    <td>{{demande.Devise_3}}</td>
+                    <td>{{demande.File_3}}</td>
+                    <td><a href="{% url 'modifier_demande' demande.id %}"><button class="btn btn-success">Modifier</button></a></td>
+                    <td><a href="{% url 'supprimer_demande' demande.id %}"><button class="btn btn-danger">Supprimer</button></a></td>
+
+                </tr>
+            {% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+<br>
+
+{% endblock %}
+

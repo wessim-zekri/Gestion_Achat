@@ -1,0 +1,1 @@
+web: gunicorn samm1.wsgi --log-file -

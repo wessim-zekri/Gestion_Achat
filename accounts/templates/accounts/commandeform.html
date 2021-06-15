@@ -1,0 +1,180 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+    <head>
+		<!-- jQuery -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+		<!-- XDSoft DateTimePicker -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+	</head>
+	<style>
+		body,
+		html {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			background: #acf1ff !important;
+        }
+        
+		.user_card {
+			width: 800px;
+			margin-top: 50px;
+			margin-bottom: 50px;
+			background: #1a2a35;
+			position: relative;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			padding: 10px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			border-radius: 5px;
+
+		}
+
+		.form_container {
+			margin-top: 20px;
+		}
+
+		#form-title{
+			color: #fff;
+		}
+		.login_btn {
+			width: 100%;
+			background: #33ccff !important;
+			color: white !important;
+			margin-bottom: 20px;
+		}
+		.login_btn:focus {
+			box-shadow: none !important;
+			outline: 0px !important;
+		}
+		.login_container {
+			padding: 0 2rem;
+			left: 25%;
+		}
+		.input-group-text {
+			background: #f7ba5b !important;
+			color: white !important;
+			border: 0 !important;
+			border-radius: 0.25rem 0 0 0.25rem !important;
+		}
+		.input_user,
+		.input_pass:focus {
+			box-shadow: none !important;
+			outline: 0px !important;
+		}
+		#messages{
+			background-color: grey;
+			color: #fff;
+			padding: 10px;
+			margin-top: 10px;
+		}
+	</style>
+
+	<div class="container h-100">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+				<div class="d-flex justify-content-center">
+					<h3 id="form-title">COMMANDE</h3>
+				</div>
+				<div class="d-flex justify-content-center form_container">
+
+					<form method="POST" action="">
+						{% csrf_token %}
+						<div class="form-row">
+                            <br>
+							<div class="form-group col-md-6">
+								<div class="input-group-6 ">
+                                    <h6 id='form-title'>{{form.Request.label}}</h6>
+                                    {{form.Request}}
+								</div>
+							</div>
+                            <div class="form-group col-md-6">
+								<div class="input-group-6">
+                                    <h6 id='form-title'>{{form.Final_Cost.label}}</h6>
+                                    {{form.Final_Cost}}
+                                    
+								</div>
+                            </div>
+
+                        </div>
+                            
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+								<div class="input-group-6">
+                                    <h6 id='form-title'>{{form.PO_Number.label}}</h6>
+                                    {{form.PO_Number}}
+                                    
+								</div>
+							</div>
+							
+							<div class="form-group col-md-6">
+								<div class="input-group-6">
+                                    <h6 id='form-title'>{{form.PO_Date.label}}</h6>
+                                    <input class="datetimepicker" type="text" name="PO_Date" autocomplete="off">
+								</div>
+						    </div>
+							
+						</div>
+						
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<div class="input-group-6">
+									<h6 id='form-title'>{{form.Estimated_Delivery_Date.label}}</h6>
+                                    <input class="datetimepicker" type="text" name="Estimated_Delivery_Date" autocomplete="off">
+								</div>
+							</div>
+                            
+
+                            <div class="form-group col-md-6">
+								<div class="input-group-6">
+                                    <h6 id='form-title'>{{form.Delivery_Date.label}}</h6>
+                                    <input class="datetimepicker" type="text" name="Delivery_Date" autocomplete="off">
+                                    
+								</div>
+							</div>
+							
+                        </div>
+
+						<div class="text-center">
+							<div class="d-flex justify-content-center mt-3 login_container col-md-6">
+								<input class="btn login_btn" type="submit" value="Enregistrer">
+							</div>
+						</div>
+					
+					</form>
+				</div>
+				{% if form.errors %}
+					{% for field in form %}
+						{% for error in field.errors %}
+							<div class="alert alert-danger">
+								<strong>{{ error|escape }}</strong>
+							</div>
+						{% endfor %}
+					{% endfor %}
+					{% for error in form.non_field_errors %}
+						<div class="alert alert-danger">
+							<strong>{{ error|escape }}</strong>
+						</div>
+					{% endfor %}
+				{% endif %}
+
+				{% for message in messages %}
+					<p id="messages">{{message}}</p>
+				{% endfor %}
+			</div>
+		</div>
+    </div>
+    
+	<script>
+		$(function () {
+		  $(".datetimepicker").datetimepicker();
+		});
+	</script>
+
+
+{% endblock %}

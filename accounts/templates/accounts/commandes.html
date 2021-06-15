@@ -1,0 +1,107 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+            <h5>Liste des commandes</h5>
+            <hr>
+			<table class="table table-sm" data-toggle="table">
+				<tr>
+					<th>Num_RFQ</th>
+                    <th>Application_Date</th>
+					<th>Project_Ref</th>
+                    <th>Requester</th>
+                    <th>Request Type</th>
+                    <th>Speciality</th>
+                    <th>Desired Delivery Date</th>
+                    <th>Customer</th>
+                    <th>PO Customer</th>
+                    <th>Supplier 1</th>
+                    <th>Delay 1</th>
+                    <th>Quotation Number 1</th>
+                    <th>Initial Cost Cotation 1</th>
+                    <th>Devise 1</th>
+                    <th>Offer 1</th>
+                    <th>Supplier 2</th>
+                    <th>Delay 2</th>
+                    <th>Quotation Number 2</th>
+                    <th>Initial Cost Cotation 2</th>
+                    <th>Devise 2</th>
+                    <th>Offer 2</th>
+                    <th>Supplier 3</th>
+                    <th>Delay 3</th>
+                    <th>Quotation Number 3</th>
+                    <th>Initial Cost Cotation 3</th>
+                    <th>Devise 3</th>
+                    <th>Offer 3</th>
+
+                    <th>Final Cost</th>
+                    <th>Estimated Delivery Date</th>
+                    <th>PO Number</th>
+                    <th>PO Date</th>
+                    <th>Delivery Date</th>
+                </tr>
+                {% for commande in commandes %}
+                <tr>
+                    <td>D2100{{commande.Request.demande.id}}</td>
+                    <td>{{commande.Request.demande.Application_Date}}</td>
+                    <td>{{commande.Request.demande.Project_Ref}}</td>
+                    <td>{{commande.Request.demande.Requester}}</td>
+                    <td>{{commande.Request.demande.Request_Type}}</td>
+                    <td>{{commande.Request.demande.Speciality}}</td>
+                    <td>{{commande.Request.demande.Desired_Delivery_Date}}</td>
+                    <td>{{commande.Request.demande.Customer}}</td>
+                    <td>{{commande.Request.demande.PO_Customer}}</td>
+                    <td>{{commande.Request.demande.Supplier_1}}</td>                    
+                    <td>{{commande.Request.demande.Delay_1}}</td>
+                    <td>{{commande.Request.demande.Quotation_Number_1}}</td>
+                    <td>{{commande.Request.demande.Initial_Cost_Cotation_1}}</td>
+                    <td>{{commande.Request.demande.Devise_1}}</td>
+                    <td>{{commande.Request.demande.File_1}}</td>
+                    <td>{{commande.Request.demande.Supplier_2}}</td>                    
+                    <td>{{commande.Request.demande.Delay_2}}</td>
+                    <td>{{commande.Request.demande.Quotation_Number_2}}</td>
+                    <td>{{commande.Request.demande.Initial_Cost_Cotation_2}}</td>
+                    <td>{{commande.Request.demande.Devise_2}}</td>
+                    <td>{{commande.Request.demande.File_2}}</td>
+                    <td>{{commande.Request.demande.Supplier_3}}</td>                    
+                    <td>{{commande.Request.demande.Delay_3}}</td>
+                    <td>{{commande.Request.demande.Quotation_Number_3}}</td>
+                    <td>{{commande.Request.demande.Initial_Cost_Cotation_3}}</td>
+                    <td>{{commande.Request.demande.Devise_3}}</td>
+                    <td>{{commande.Request.demande.File_3}}</td>
+
+                    <td>{{commande.Final_Cost}}</td>
+                    <td>{{commande.Estimated_Delivery_Date}}</td>
+                    <td>{{commande.PO_Number}}</td>
+                    <td>{{commande.PO_Date}}</td>
+                    <td>{{commande.Delivery_Date}}</td>                    
+                    <!--<td><button class="btn btn-success">MAJ Statut</button></td>-->
+
+                </tr>
+            {% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+<br>
+
+<!--<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get">
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>
+	
+</div>-->
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+            <h5>Les projets de SAMM</h5>
+            <hr>
+			<table class="table table-sm">
+				<tr>
+					<th>Projet</th>
+					<th>Responsable</th>
+					<th>Date de Creation</th>
+					<th>Durée (semaines)</th>
+					<th>Statut</th>
+                    <th></th>
+				</tr>
+
+                {% for projet in projets %}
+                    <tr>
+                        <td>{{projet.designation}}</td>
+						<td>{{projet.responsable}}</td>
+						<td>{{projet.date_creation}}</td>
+						<td>{{projet.durée_en_semaines}}</td>
+						<td>{{projet.statut}}</td>
+                        <td><a href="{% url 'projet' projet.id %}"><button class="btn btn-sm btn-info">Consulter</button></a></td>
+                    </tr>
+                {% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+<br>
+
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get">
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>
+	
+</div>
+
+{% endblock %}
+

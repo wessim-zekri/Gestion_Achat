@@ -1,0 +1,18 @@
+
+body{
+    background-color: #aec6f5;
+}
+
+
+#demandes-totales{
+    background-color: #4cb4c7;
+}
+
+
+#demandes-validées{
+    background-color: #7abecc;
+}
+
+#demandes-non-traitées{
+    background-color: #7CD1C0;
+}

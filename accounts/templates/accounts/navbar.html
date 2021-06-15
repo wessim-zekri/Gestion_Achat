@@ -1,0 +1,131 @@
+{% load static %}
+{% load auth_extras %}
+<style>
+    .hello-msg{
+      font-size: 18px;
+      color: #fff;
+      margin-right: 20px;
+    }
+  </style>
+
+<div class="container-nav">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="http://www.samm-automation.com/" target="_blank">
+                <img src="http://www.samm-automation.com/img/logo/logo.png" alt="logo" style="width:150px;">
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">     
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'home' %}">DASHBOARD</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'projets' %}">PROJETS</a>
+                    </li>
+
+                    {% if request.user|has_group:"responsable achat" or request.user|has_group:"admin" %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        FOURNISSEURS
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'creer_fournisseur' %}">Ajouter un fournisseur</a></li>
+                        <li><a class="dropdown-item" href="{% url 'fournisseurs' %}">Consulter les fournisseurs</a></li>
+                        <!--<li><hr class="dropdown-divider"></li>-->
+                        </ul>
+                    </li>
+                    {% endif %}
+
+                    {% if request.user|has_group:"admin" %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        EMPLOYES
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'creer_compte' %}">Ajouter une session</a></li>
+                        <li><a class="dropdown-item" href="{% url 'creer_employé' %}">Ajouter un employé</a></li>
+                        <li><a class="dropdown-item" href="{% url 'employés' %}">Consulter les employés</a></li>
+                        <!--<li><hr class="dropdown-divider"></li>-->
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        UPLOAD
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'upload_file_view' %}">UPLOAD SUPPLIERS</a></li>
+                        <li><a class="dropdown-item" href="{% url 'upload_file_customer' %}">UPLOAD CUSTOMERS</a></li>
+                        <li><a class="dropdown-item" href="{% url 'upload_file_pocustomer' %}">UPLOAD BD CUSTOMERS</a></li>
+                        <!--<li><hr class="dropdown-divider"></li>-->
+                        </ul>
+                    </li>
+                    {% endif %}
+            
+                    {% if request.user|has_group:"magasinier" or request.user|has_group:"admin" %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        STOCK
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'ajouter_piece' %}">Ajouter une pièce</a></li>
+                        <li><a class="dropdown-item" href="{% url 'pieces' %}">Consulter les pièces</a></li>
+                        <!--<li><hr class="dropdown-divider"></li>-->
+                        </ul>
+                    </li>
+                    {% endif %}
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        DEMANDE D'ACHAT
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'creer_demande' %}">Ajouter une demande</a></li>
+                        <li><a class="dropdown-item" href="{% url 'demandes' %}">Consulter les demandes</a></li>
+                        <li><a class="dropdown-item" href="{% url 'demval' %}">Consulter les demandes validées</a></li>                        
+                        <!--<li><hr class="dropdown-divider"></li>-->
+                        </ul>
+                    </li>
+
+                    {% if request.user|has_group:"admin" %}
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'commandes' %}">COMMANDES</a>
+                        </li>
+                    {% endif %}
+
+                    {% if request.user|has_group:"direction" or request.user|has_group:"responsable achat" %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'demdir' %}">VALIDATION</a>
+                    </li>
+                    {% endif %}
+
+
+                    {% if request.user|has_group:"responsable achat" %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        COMMANDE D'ACHAT
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'lancer_commande' %}">Lancer une commande</a></li>
+                        <li><a class="dropdown-item" href="{% url 'commandes' %}">Consulter les commandes</a></li>
+                        <!--<li><hr class="dropdown-divider"></li>-->
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <!--<a class="nav-link active" href="{% url 'mail' %}">CONTACT FRN</a>-->
+                    </li>  
+                    {% endif %}
+                </ul>
+                <!--<form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Chercher" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Déconnexion</button>
+                -->
+                <span class="hello-msg">{{request.user}}</span>
+                <span><a  class="btn btn-outline-success" href="{% url 'logoutUser' %}">Déconnexion</a></span>
+                </form>
+            </div>
+        </div>
+    </nav>
+</div>

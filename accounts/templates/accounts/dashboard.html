@@ -1,0 +1,115 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+
+{%  include 'accounts/status.html' %}
+
+<br>
+
+<div class="row">
+	<div class="col-md-4">
+        <div class="card-body">       
+            <div class="row">
+                <div class="card card-body">
+                    <h5>FOURNISSEURS</h5>
+                    <hr>
+                    <table class="table table-sm">
+                        <tr>
+                            <th>Nom</th>
+                            <th>Référence</th>
+                            <th></th>
+        
+                        </tr>
+                        
+                        {% for fournisseur in fournisseurs %}
+                        <tr>
+                            <td>{{fournisseur.nom}}</td>
+                            <td>{{fournisseur.reference}}</td>
+                            <td><a href="{% url 'fournisseur' fournisseur.id %}"><button class="btn btn-sm btn-info">Consulter</button></a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="card card-body">
+                    <h5>PROJETS</h5>
+                    <hr>
+                    <!--<a class="btn btn-outline-dark  btn-sm btn-block" href="">Ajouter Projet</a>-->
+                    <table class="table table-sm">
+                        <tr>
+                            <th>Projet</th>
+                            <th>Responsable</th>
+                            <th></th>
+                        </tr>
+
+                        {% for projet in projets %}
+                            <tr>
+                                <td>{{projet.designation}}</td>
+                                <td>{{projet.responsable}}</td>
+                                <td><a href="{% url 'projet' projet.id %}"><button class="btn btn-sm btn-info">Consulter</button></a></td>
+                            </tr>
+                        {% endfor %}
+
+                    </table>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+
+	<div class="col-md-8">
+		<div class="card card-body">
+            <h5>LES 5 DERNIERES DEMANDES</h5>
+            <hr>
+			<a class="btn btn-outline-dark  btn-sm btn-block" href="{% url 'creer_demande' %}">Ajouter Demande</a>
+            <br>
+            <table class="table table-sm" data-toggle="table">
+				<tr>
+					<th>Num_RFQ</th>
+					<th>Project_Ref</th>
+					<th>Application_Date</th>
+                    <th>Customer</th>
+                    <th>PO Custome</th>
+                    <th>Requester</th>
+                    <th>Speciality</th>
+                    <th>Desired Delivery Date</th>
+                    <th>Quotation Number</th>
+                    <th>Supplier</th>
+                    <th>Initial Cost Cotation</th>
+                    <th>Devise</th>
+                    <th>Initial Delivery Date</th>
+                    <th>Status</th>
+
+                </tr>
+                
+                {% for demande in demandes %}
+                <tr>
+                    <td>{{demande.id}}</td>
+                    <td>{{demande.Project_Ref}}</td>
+                    <td>{{demande.Application_Date}}</td>
+                    <td>{{demande.Customer}}</td>
+                    <td>{{demande.PO_Customer}}</td>
+                    <td>{{demande.Requester}}</td>
+                    <td>{{demande.Speciality}}</td>
+                    <td>{{demande.Desired_Delivery_Date}}</td>
+                    <td>{{demande.Quotation_Number}}</td>
+                    <td>{{demande.Supplier}}</td>
+                    <td>{{demande.Initial_Cost_Cotation}}</td>
+                    <td>{{demande.Devise}}</td>
+                    <td>{{demande.Initial_Delivery_Date}}</td>
+                    <td>{{demande.statut}}</td>
+                    <td><a href="{% url 'modifier_demande' demande.id %}"><button class="btn btn-success">Modifier</button></a></td>
+                    <td><a href="{% url 'supprimer_demande' demande.id %}"><button class="btn btn-danger">Supprimer</button></a></td>
+
+                </tr>
+                {% endfor %}
+    
+			</table>
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}
